@@ -3,11 +3,22 @@
         xmlns:vm="using:StepperGUI.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
         x:Class="StepperGUI.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="StepperGUI">
+        Title="StepperGUI"
+        Background="Gray"
+        Width="450" Height="450">
+
+    <Window.Styles>
+        <Styles>
+		    <Style Selector="TextBlock">
+			    <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </Styles>
+    </Window.Styles>
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +26,45 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Margin="40">
+        <Grid.ColumnDefinitions>
+			<ColumnDefinition />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+            
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Port" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Width="100"  ItemsSource="{Binding PortList}" SelectedItem="{Binding PortName}" />
+        <Button Grid.Row="0" Grid.Column="2" Content="Init" Command="{Binding InitPortCommand}" />
+
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Angle" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Angle}" Height="30" Width="100" HorizontalAlignment="Left" />
+        <Button Grid.Row="1" Grid.Column="2" Content="Rotate" Command="{Binding RotateCommand}" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Channel" />
+        <ComboBox Grid.Row="2" Grid.Column="1" Width="100" SelectedItem="{Binding Channel}">
+            <ComboBox.Items>
+                <x:String>0</x:String>
+                <x:String>1</x:String>
+                <x:String>2</x:String>
+            </ComboBox.Items>
+        </ComboBox>
+
+ <!--        <TextBlock Grid.Row="0" Grid.Column="1" Text="0,1" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="1,1" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="2,1" />-->
+		
+    </Grid>
 
 </Window>

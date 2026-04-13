@@ -1,4 +1,5 @@
 ﻿using NModbus;
+using System;
 
 namespace ModbusInterface;
 

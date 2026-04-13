@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.IO.Ports;
 
 namespace ModbusInterface;
@@ -28,19 +29,19 @@ public class StepperModbusInterface : ModbusSerialInterface
 
     public bool ReadSerialNumber(out UInt32 value, bool flange = false)
     {
-        ushort address = flange ? (ushort)Ptx400InputRegisters.IR_FLANGE_SN :  (ushort)Ptx400InputRegisters.IR_SENSOR_SN;
+        ushort address = flange ? (ushort)StepperInputRegisters.IR_FLANGE_SN :  (ushort)StepperInputRegisters.IR_SENSOR_SN;
         return ReadUInt32Value(address, true, out value);
     }
 
     public bool ReadPressure(out float value)
     {
-        ushort address = (ushort)Ptx400InputRegisters.IR_PRESSURE;
+        ushort address = (ushort)StepperInputRegisters.IR_PRESSURE;
         return ReadFloatValue(address, true, out value);
     }
 
     public bool ReadTemperature(out float value)
     {
-        ushort address = (ushort)Ptx400InputRegisters.IR_TEMPERATURE;
+        ushort address = (ushort)StepperInputRegisters.IR_TEMPERATURE;
         return ReadFloatValue(address, true, out value);
     }
 }

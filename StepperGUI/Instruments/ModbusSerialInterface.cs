@@ -1,6 +1,8 @@
 ﻿using NModbus;
 using NModbus.Serial;
+using System;
 using System.IO.Ports;
+using System.Linq;
 
 namespace ModbusInterface;
 
